@@ -23,4 +23,13 @@ public class AccountTest {
         assertEquals(account.balance, 100);
 
     }
+
+    @Test
+    public void withdrawAnAmountToReduceTheBalance() {
+        final Account account = new Account();
+        account.deposit(100);
+        account.withdraw(50);
+        assertEquals(account.balance, 50);
+
+    }
 }
