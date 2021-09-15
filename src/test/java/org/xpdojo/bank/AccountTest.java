@@ -21,7 +21,8 @@ public class AccountTest {
     @Test
     public void depositAnAmountToIncreaseTheBalance() {
         final Account account = new Account();
-        account.deposit(100);
+        final AccountService accountService = new AccountService();
+        accountService.deposit(account, 100);
         assertEquals(account.balance, 100);
 
     }
@@ -29,17 +30,18 @@ public class AccountTest {
     @Test
     public void withdrawAnAmountToReduceTheBalance() {
         final Account account = new Account();
-        account.deposit(100);
-        account.withdraw(50);
+        final AccountService accountService = new AccountService();
+        accountService.deposit(account, 100);
+        accountService.withdraw(account, 50);
         assertEquals(account.balance, 50);
     }
 
     @Test
     public void transferBetweenAccounts() {
         final Account accountA = new Account();
-        accountA.deposit(100);
         final Account accountB = new Account();
         final AccountService accountService = new AccountService();
+        accountService.deposit(accountA, 100);
         accountService.transfer(accountA, accountB, 10);
         assertEquals(accountA.balance, 90);
         assertEquals(accountB.balance, 10);
